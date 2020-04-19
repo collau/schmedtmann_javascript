@@ -81,6 +81,7 @@ console.log(typeof 'Mark is older than John');
 * Operator Precedence
 */
 
+/*
 var now = 2019;
 var yearTrent = 1998;
 var fullAge = 21;
@@ -107,3 +108,24 @@ x += 10; // x = x + 10;
 console.log(x);
 x++; // x += 1 // x = x + 1
 console.log(x);
+*/
+
+/******************************************************************
+* if / else statements
+*/
+
+var firstName = 'Adrian';
+var civilStatus = 'married';
+
+if (civilStatus === 'married') {
+    console.log(firstName + ' is married!');
+} else {
+    console.log(firstName + ' will hopefully marry soon :)');
+}
+
+var isMarried = true;
+if (isMarried) {
+    console.log(firstName + ' is married!');
+} else {
+    console.log(firstName + ' will hopefully marry soon :)');
+}
