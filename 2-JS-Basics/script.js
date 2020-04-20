@@ -235,6 +235,7 @@ if (height == '23') {
 * Functions
 */
 
+/*
 function calculateAge(birthYear) {
     return 2019 - birthYear;
 }
@@ -257,3 +258,29 @@ function yearsUntilRetirement(year, firstName) {
 yearsUntilRetirement(1990, 'John');
 yearsUntilRetirement(1948, 'Mike');
 yearsUntilRetirement(1969, 'Jane');
+*/
+
+/******************************************************************
+* Function Statements and Expressions
+*/
+
+// Function declaration
+// function whatDoYouDo(job, firstName) {};
+
+// Function Expression - always produces a value, as long as a code results in a single value
+var whatDoYouDo = function(job, firstName) {
+    switch (job) {
+        case 'teacher':
+            return firstName + ' teaches kids how to code.'; //return will finish the function
+        case 'driver':
+            return firstName + ' drives a cab in Lisbon.';
+        case 'designer':
+            return firstName + ' designs beautiful websites.';
+        default:
+            return firstName + ' does something else.';
+    }
+}
+
+console.log(whatDoYouDo('teacher', 'John'));
+console.log(whatDoYouDo('designer', 'Jane'));
+console.log(whatDoYouDo('retired', 'Mark'));
