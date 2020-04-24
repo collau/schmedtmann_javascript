@@ -291,6 +291,7 @@ console.log(whatDoYouDo('retired', 'Mark'));
 * Arrays
 */
 
+/*
 // Initialize new array
 var names = ['Trent', 'Kevin', 'Dele'];
 var years = new Array(1998, 1991, 1996);
@@ -324,3 +325,36 @@ console.log(john.indexOf(1990)); // returns -1 if element is not in the array
 
 var isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'John IS a designer';
 console.log(isDesigner);
+*/
+
+/******************************************************************
+* Objects and Properties (key-value pairs)
+*/
+
+// Creating an object (Object literal)
+var john = {
+    firstName: 'John',
+    lastName: 'Smith',
+    birthYear: 1990,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false
+};
+
+// Retrieving data from object
+console.log(john.firstName); // John
+console.log(john['lastName']); // Smith
+var x = 'birthYear';
+console.log(john[x]); // 1990
+
+// Mutating data in object
+john.job = 'designer';
+john['isMarried'] = true;
+console.log(john);
+
+// Creating an object (new Object syntax)
+var jane = new Object();
+jane.firstName = 'Jane';
+jane.birthYear = 1969;
+jane['lastName'] = 'Smith';
+console.log(jane);
