@@ -331,6 +331,7 @@ console.log(isDesigner);
 * Objects and Properties (key-value pairs)
 */
 
+/*
 // Creating an object (Object literal)
 var john = {
     firstName: 'John',
@@ -358,3 +359,26 @@ jane.firstName = 'Jane';
 jane.birthYear = 1969;
 jane['lastName'] = 'Smith';
 console.log(jane);
+*/
+
+/******************************************************************
+* Objects and Methods
+*/
+
+var john = {
+    firstName: 'John',
+    lastName: 'Smith',
+    birthYear: 1990,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false,
+    // Method of john object
+    calcAge: function() {
+        // Creating a property in function
+        // Must run the function for the property to be created
+        this.age = 2019 - this.birthYear; // "this" means this object, in this case, john.birthYear
+    }
+};
+
+john.calcAge();
+console.log(john);
