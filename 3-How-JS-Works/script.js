@@ -6,6 +6,7 @@
 - Code is scanned for variable declaration: for each variable, a property is created in the Variable Object, and set to undefined.
 */
 
+/*
 // functions
 calculateAge(1965); // function ran before declaration
 
@@ -38,7 +39,7 @@ function foo() {
 }
 foo();
 console.log(age);
-
+*/
 
 
 
@@ -46,6 +47,7 @@ console.log(age);
 
 ///////////////////////////////////////
 // Lecture: Scoping
+// where can we access a certain variable/function
 
 
 // First scoping example
@@ -70,20 +72,20 @@ function first() {
 // Example to show the differece between execution stack and scope chain
 
 /*
-var a = 'Hello!';
+var a = 'Hello!'; // defined in Global scope
 first();
 
 function first() {
-    var b = 'Hi!';
+    var b = 'Hi!'; // defined in first() scope, access to first() and Global scopes
     second();
 
     function second() {
-        var c = 'Hey!';
+        var c = 'Hey!'; // defined in second() scope, access to second(), first() and Global scopes
         third()
     }
 }
 
-function third() {
+function third() { // third() scope, access to third() and Global scopes
     var d = 'John';
     console.log(a + b + c + d);
 }
