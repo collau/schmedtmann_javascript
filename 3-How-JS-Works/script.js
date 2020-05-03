@@ -95,9 +95,48 @@ function third() { // third() scope, access to third() and Global scopes
 
 ///////////////////////////////////////
 // Lecture: The this keyword
+// Regular function call: "this" keyword points at the global object
+// Method call: "this" variable points to the object calling the method
+// "this" keyword is not assigned a value until a function where it is defined is actually called
+
+// console.log(this); // Window object
+
+// Regular function call -- points at global object
+calculateAge(1985);
+
+function calculateAge(year) {
+    console.log(2019 - year);
+    console.log(this);
+}
 
 
+// Method call -- point to object calling the method
+var john = {
+    name: 'John',
+    yearOfBirth: 1990,
+    calculateAge: function() {
+        console.log(this);
+        console.log(2019 - this.yearOfBirth)
 
+        /*
+        // Regular function call -- points at global object
+        function innerFunction() {
+            console.log(this); // Window object
+        }
+        innerFunction();
+        */
+    }
+}
+
+john.calculateAge();
+
+var mike = {
+    name: 'Mike',
+    yearOfBirth: 1979
+};
+
+mike.calculateAge = john.calculateAge;
+mike.calculateAge(); // mike object -- this keyword is only assigned when the method is called
 
 
 
