@@ -1,16 +1,43 @@
 ///////////////////////////////////////
 // Lecture: Hoisting
 
+/*
+- Code is scanned for FUNCTION DECLARATIONS: for each function, a property is created in the Variable Object, pointing to the function.
+- Code is scanned for variable declaration: for each variable, a property is created in the Variable Object, and set to undefined.
+*/
+
+// functions
+calculateAge(1965); // function ran before declaration
 
 
+function calculateAge(year) {
+    console.log(2019 - year);
+}
+// all functions is stored in the execution context before running the code
+
+// This is not a function declaration, but a function expression
+// function expression can only be run after definition
+var retirement = function(year) {
+    console.log(65 - (2019 - year));
+}
+retirement(1990);
 
 
+// variables
 
+// age variable is scanned, property created, set to undefined
+console.log(age);
 
+// age variable is defined
+var age = 23; // this age variable is stored in the global execution context
+console.log(age);
 
-
-
-
+function foo() {
+    var age = 65; // this age variable is stored in another execution context
+    console.log(age);
+}
+foo();
+console.log(age);
 
 
 
