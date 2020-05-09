@@ -2,6 +2,7 @@
 *** GENERAL
 **********************************************/
 
+/* universal selector is * */
 * {
     margin: 0;
     padding: 0;
@@ -9,12 +10,14 @@
     
 }
 
+/* class selector starts with a . */
 .clearfix::after {
     content: "";
     display: table;
     clear: both;
 }
 
+/* element selector */
 body {
     background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
     background-size: cover;
