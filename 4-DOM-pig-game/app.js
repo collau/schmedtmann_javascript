@@ -14,7 +14,7 @@ var scoreGlobal = [0,0];
 var scoreRound = 0;
 var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write into scoreGlobal
 
-var dice = Math.ceil(Math.random() * 6);
+// var dice = Math.ceil(Math.random() * 6);
 
 
 // Access into the DOM
@@ -22,7 +22,7 @@ var dice = Math.ceil(Math.random() * 6);
 // # - id of DOM; . - class of DOM
 
 /* Change values in element (Setter) */
-document.querySelector("#current-" + activePlayer).textContent = dice;
+// document.querySelector("#current-" + activePlayer).textContent = dice;
 
 /* use html code in textContent */
 // document.querySelector("#current-" + activePlayer).innerHTML = "<em>" + dice + "</em>"
@@ -33,3 +33,32 @@ document.querySelector("#current-" + activePlayer).textContent = dice;
 
 /* Setting a CSS property: Inspect element to see impact */
 document.querySelector(".dice").style.display = 'none';
+
+
+// Get Element By Id
+document.getElementById("score-0").textContent = "0";
+document.getElementById("score-1").textContent = "0";
+document.getElementById("current-0").textContent = "0";
+document.getElementById("current-1").textContent = "0";
+
+/* Anonymous function on event handler */
+document.querySelector(".btn-roll").addEventListener("click", function() {
+    
+    // 1. Random number
+    var dice = Math.ceil(Math.random() * 6);
+
+    // 2. Display the result
+    var imageDice = document.querySelector(".dice"); // create a variable to store the DOM selection
+    imageDice.style.display = 'block';
+    imageDice.src = "dice-" + dice + ".png"; // change the image of the dice
+
+
+    // 3. Update the round score IF the rolled number is NOT a 1
+});
+
+/* Callback function on event handler */
+// document.querySelector(".btn-roll").addEventListener("click", btn);
+
+// function btn() {
+//     console.log("button clicked");
+// }
