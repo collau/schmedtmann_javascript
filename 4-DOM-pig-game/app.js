@@ -10,9 +10,10 @@ GAME RULES:
 */
 
 // Think about the variables that you need
-var scoreGlobal = [0,0];
-var scoreRound = 0;
-var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write into scoreGlobal
+var scoreGlobal, scoreRound, activePlayer;
+// var scoreGlobal = [0,0];
+// var scoreRound = 0;
+// var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write into scoreGlobal
 
 // var dice = Math.ceil(Math.random() * 6);
 
@@ -32,14 +33,15 @@ var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write i
 // console.log(x);
 
 /* Setting a CSS property: Inspect element to see impact */
-document.querySelector(".dice").style.display = 'none';
+// document.querySelector(".dice").style.display = 'none';
 
 
 // Get Element By Id
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
+// document.getElementById("score-0").textContent = "0";
+// document.getElementById("score-1").textContent = "0";
+// document.getElementById("current-0").textContent = "0";
+// document.getElementById("current-1").textContent = "0";
+init();
 
 /* Anonymous function on event handler */
 document.querySelector(".btn-roll").addEventListener("click", function() {
@@ -100,6 +102,31 @@ function nextPlayer() {
     // document.querySelector(".player-1-panel").classList.add("active");
     document.querySelector(".player-0-panel").classList.toggle("active");
     document.querySelector(".player-1-panel").classList.toggle("active");
+}
+
+document.querySelector(".btn-new").addEventListener("click", init)
+
+// Initialize the game
+function init() {
+    scoreGlobal = [0,0];
+    activePlayer = 0;
+    scoreRound = 0;
+
+    document.querySelector(".dice").style.display = 'none';
+
+    document.getElementById("score-0").textContent = "0";
+    document.getElementById("score-1").textContent = "0";
+    document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 2";
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+    
+    document.querySelector(".player-" + activePlayer + "-panel").classList.add("active");
 }
 
 /* Callback function on event handler */
