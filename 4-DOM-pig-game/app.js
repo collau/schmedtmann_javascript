@@ -10,7 +10,7 @@ GAME RULES:
 */
 
 // Think about the variables that you need
-var scoreGlobal, scoreRound, activePlayer;
+var scoreGlobal, scoreRound, activePlayer, gamePlaying;
 // var scoreGlobal = [0,0];
 // var scoreRound = 0;
 // var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write into scoreGlobal
@@ -45,47 +45,51 @@ init();
 
 /* Anonymous function on event handler */
 document.querySelector(".btn-roll").addEventListener("click", function() {
-    
-    // 1. Random number
-    var dice = Math.ceil(Math.random() * 6);
+    if (gamePlaying) {
+        // 1. Random number
+        var dice = Math.ceil(Math.random() * 6);
 
-    // 2. Display the result
-    var imageDice = document.querySelector(".dice"); // create a variable to store the DOM selection
-    imageDice.style.display = 'block';
-    imageDice.src = "dice-" + dice + ".png"; // change the image of the dice
+        // 2. Display the result
+        var imageDice = document.querySelector(".dice"); // create a variable to store the DOM selection
+        imageDice.style.display = 'block';
+        imageDice.src = "dice-" + dice + ".png"; // change the image of the dice
 
 
-    // 3. Update the round score IF the rolled number is NOT a 1
-    if (dice !== 1) {
-        // Add score
-        scoreRound += dice; // roundScore = roundScore + dice;
-        document.querySelector("#current-" + activePlayer).textContent = scoreRound;
-    } else {
-        nextPlayer();
+        // 3. Update the round score IF the rolled number is NOT a 1
+        if (dice !== 1) {
+            // Add score
+            scoreRound += dice; // roundScore = roundScore + dice;
+            document.querySelector("#current-" + activePlayer).textContent = scoreRound;
+        } else {
+            nextPlayer();
+        }
     }
 });
 
 /* Implementing 'Hold' function */
 document.querySelector(".btn-hold").addEventListener("click", function() {
-    // Add round score to global score
-    scoreGlobal[activePlayer] += scoreRound;
+    if (gamePlaying) {
+        // Add round score to global score
+        scoreGlobal[activePlayer] += scoreRound;
 
-    // Update the UI
-    document.querySelector("#score-" + activePlayer).textContent = scoreGlobal[activePlayer];
-    
-    // Check if player won the game
-    if (scoreGlobal[activePlayer] >= 20) {
-        // Replace name with "Winner!"
-        document.getElementById("name-" + activePlayer).textContent = "WINNER!";
-        document.querySelector(".dice").style.display = "none";
-
-        // Adding / Removing a class defined in CSS
-        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
-        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+        // Update the UI
+        document.querySelector("#score-" + activePlayer).textContent = scoreGlobal[activePlayer];
         
-    } else {
-        // Next player
-        nextPlayer();
+        // Check if player won the game
+        if (scoreGlobal[activePlayer] >= 20) {
+            // Replace name with "Winner!"
+            document.getElementById("name-" + activePlayer).textContent = "WINNER!";
+            document.querySelector(".dice").style.display = "none";
+
+            // Adding / Removing a class defined in CSS
+            document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+            document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+
+            gamePlaying = false;
+        } else {
+            // Next player
+            nextPlayer();
+        }
     }
 })
 
@@ -111,6 +115,7 @@ function init() {
     scoreGlobal = [0,0];
     activePlayer = 0;
     scoreRound = 0;
+    gamePlaying = true;
 
     document.querySelector(".dice").style.display = 'none';
 
