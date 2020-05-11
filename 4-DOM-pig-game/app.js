@@ -59,20 +59,48 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
         scoreRound += dice; // roundScore = roundScore + dice;
         document.querySelector("#current-" + activePlayer).textContent = scoreRound;
     } else {
-        // Next player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        scoreRound = 0; // reset round score to 0
-
-        document.getElementById("current-0").textContent = '0';
-        document.getElementById("current-1").textContent = '0';
-
-        /* Add, remove and toggle HTML classes */
-        // document.querySelector(".player-0-panel").classList.remove("active");
-        // document.querySelector(".player-1-panel").classList.add("active");
-        document.querySelector(".player-0-panel").classList.toggle("active");
-        document.querySelector(".player-1-panel").classList.toggle("active");
+        nextPlayer();
     }
 });
+
+/* Implementing 'Hold' function */
+document.querySelector(".btn-hold").addEventListener("click", function() {
+    // Add round score to global score
+    scoreGlobal[activePlayer] += scoreRound;
+
+    // Update the UI
+    document.querySelector("#score-" + activePlayer).textContent = scoreGlobal[activePlayer];
+    
+    // Check if player won the game
+    if (scoreGlobal[activePlayer] >= 20) {
+        // Replace name with "Winner!"
+        document.getElementById("name-" + activePlayer).textContent = "WINNER!";
+        document.querySelector(".dice").style.display = "none";
+
+        // Adding / Removing a class defined in CSS
+        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+        
+    } else {
+        // Next player
+        nextPlayer();
+    }
+})
+
+function nextPlayer() {
+    // Next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    scoreRound = 0; // reset round score to 0
+
+    document.getElementById("current-0").textContent = '0';
+    document.getElementById("current-1").textContent = '0';
+
+    /* Add, remove and toggle HTML classes */
+    // document.querySelector(".player-0-panel").classList.remove("active");
+    // document.querySelector(".player-1-panel").classList.add("active");
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".player-1-panel").classList.toggle("active");
+}
 
 /* Callback function on event handler */
 // document.querySelector(".btn-roll").addEventListener("click", btn);
