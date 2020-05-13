@@ -10,7 +10,7 @@ GAME RULES:
 */
 
 // Think about the variables that you need
-var scoreGlobal, scoreRound, activePlayer, gamePlaying;
+var scoreGlobal, scoreRound, activePlayer, gamePlaying, lastRoll;
 // var scoreGlobal = [0,0];
 // var scoreRound = 0;
 // var activePlayer = 0; // 0 - first player, 1 - second player --> to read/write into scoreGlobal
@@ -55,11 +55,19 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
         imageDice.src = "dice-" + dice + ".png"; // change the image of the dice
 
 
+        if (lastRoll === 6 && dice === 6) {
+            scoreGlobal[activePlayer] = 0;
+            document.querySelector("#score-" + activePlayer).textContent = scoreGlobal[activePlayer];
+            nextPlayer();
+        }
         // 3. Update the round score IF the rolled number is NOT a 1
-        if (dice !== 1) {
+        else if (dice !== 1) {
             // Add score
             scoreRound += dice; // roundScore = roundScore + dice;
             document.querySelector("#current-" + activePlayer).textContent = scoreRound;
+
+            // Register last roll
+            lastRoll = dice;
         } else {
             nextPlayer();
         }
@@ -97,6 +105,7 @@ function nextPlayer() {
     // Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     scoreRound = 0; // reset round score to 0
+    lastRoll = 0; // reset last roll
 
     document.getElementById("current-0").textContent = '0';
     document.getElementById("current-1").textContent = '0';
