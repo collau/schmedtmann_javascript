@@ -74,9 +74,21 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
 
         // Update the UI
         document.querySelector("#score-" + activePlayer).textContent = scoreGlobal[activePlayer];
+
+        var input = document.querySelector('.target-score').value;
+        var scoreTarget;
+        console.log(scoreTarget);
+
+        // Undefined, 0, null or "" are COERCED to false
+        // Anything else is COERCED to true
+        if (input) {
+            scoreTarget = input;
+        } else {
+            scoreTarget = 100;
+        }
         
         // Check if player won the game
-        if (scoreGlobal[activePlayer] >= 20) {
+        if (scoreGlobal[activePlayer] >= scoreTarget) {
             // Replace name with "Winner!"
             document.getElementById("name-" + activePlayer).textContent = "WINNER!";
             document.querySelector(".dice").style.display = "none";
