@@ -50,6 +50,7 @@ lastName is a property of the Person prototype, and will apply to all Persons
  * 2. Create a new object based on that prototype
  */
 
+ /*
  // Write prototype as a simple object
  var personProto = {
      calculateAge: function() {
@@ -68,3 +69,57 @@ lastName is a property of the Person prototype, and will apply to all Persons
         yearOfBirth: { value: 1969 },
         job: { value: 'designer' }
     });
+
+*/
+
+
+/******************************************************************
+ * Primitives vs Objects
+ * 
+ * 
+ * 
+ */
+
+// Primitives
+// Each variable holds a copy of their data, and do not reference anything
+var a = 23;
+var b = a;
+a = 46; // doesn't affect value of variable b
+console.log("a is " + a); // 46
+console.log("b is " + b); // 23
+
+// Objects
+var obj1 = {
+    name: 'John',
+    age: 26 
+};
+var obj2 = obj1;
+/*
+No new object was created
+Only created a new reference pointing to the first object
+obj1 and obj2 variables both hold a reference that point to the exact same object in the memory 
+*/
+
+obj1.age = 63;
+console.log(obj1.age); // 63
+console.log(obj2.age); // 63
+
+// Functions
+var age = 29;
+var obj = {
+    name: 'Jonas',
+    city: 'Lisbon'
+};
+
+function change(a, b) {
+    a = 30;
+    b.city = 'San Francisco';
+}
+
+change(age, obj);
+console.log(age); // 27
+console.log(obj.city); // San Francisco
+/*
+When we pass a primitive into the function, a simple copy is created, it will never affect the variable on the outside
+When we pass an object into the function, we pass the reference that points to the object, the change will reflect outside
+*/
