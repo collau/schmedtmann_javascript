@@ -5,6 +5,7 @@
  * Always start function constructor with capital letters
  */
 
+/* 
 var Person = function(name, yearOfBirth, job) {
     this.name = name;
     this.yearOfBirth = yearOfBirth;
@@ -33,9 +34,37 @@ var mark = new Person('Mark', 1948, 'retired');
 john.calculateAge();
 jane.calculateAge();
 mark.calculateAge();
+*/
 
 /* In console, run hasOwnProperty function to check if property is of object or prototype
 john.hasOwnProperty('job') --> true
 john.hasOwnProperty('lastName') --> false
 lastName is a property of the Person prototype, and will apply to all Persons
 */
+
+
+/******************************************************************
+ * Object.create
+ * 
+ * 1. Define an object that will act as the prototype
+ * 2. Create a new object based on that prototype
+ */
+
+ // Write prototype as a simple object
+ var personProto = {
+     calculateAge: function() {
+         console.log(2020 - this.yearOfBirth);
+     }
+ };
+
+ var john = Object.create(personProto);
+ john.name = 'John';
+ john.yearOfBirth = 1990;
+ john.job = 'teacher';
+
+ var jane = Object.create(personProto, 
+    {
+        name: { value: 'Jane' },
+        yearOfBirth: { value: 1969 },
+        job: { value: 'designer' }
+    });
