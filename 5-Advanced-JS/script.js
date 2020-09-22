@@ -75,13 +75,12 @@ lastName is a property of the Person prototype, and will apply to all Persons
 
 /******************************************************************
  * Primitives vs Objects
- * 
- * 
- * 
  */
 
 // Primitives
 // Each variable holds a copy of their data, and do not reference anything
+
+/*
 var a = 23;
 var b = a;
 a = 46; // doesn't affect value of variable b
@@ -94,12 +93,14 @@ var obj1 = {
     age: 26 
 };
 var obj2 = obj1;
+*/
 /*
 No new object was created
 Only created a new reference pointing to the first object
 obj1 and obj2 variables both hold a reference that point to the exact same object in the memory 
 */
 
+/*
 obj1.age = 63;
 console.log(obj1.age); // 63
 console.log(obj2.age); // 63
@@ -119,7 +120,50 @@ function change(a, b) {
 change(age, obj);
 console.log(age); // 27
 console.log(obj.city); // San Francisco
+*/
 /*
 When we pass a primitive into the function, a simple copy is created, it will never affect the variable on the outside
 When we pass an object into the function, we pass the reference that points to the object, the change will reflect outside
 */
+
+
+/******************************************************************
+ * Passing Functions as Arguments
+ */
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++)
+    {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+// Functions that can be used later as the fn function
+// Callback functions - functions that we pass into functions that will then call them later
+
+function calculateAge(element) {
+    return 2020 - element;
+}
+
+function isFullAge(element) {
+    return element >= 18;
+}
+
+function maxHR(element) {
+    if (element >= 18 && element <= 81)
+        return Math.round(206.9 - (0.67 * element));
+    else
+        return -1;
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullAges = arrayCalc(ages, isFullAge);
+var rates = arrayCalc(ages, maxHR);
+
+console.log(ages);
+console.log(fullAges);
+console.log(rates);
