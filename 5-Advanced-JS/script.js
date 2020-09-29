@@ -177,6 +177,7 @@ console.log(rates);
 
 // Create a function that returns different interview questions for different jobs
 
+/*
 function interviewQuestion(job) {
     if (job === "designer") {
         return function(name) {
@@ -200,3 +201,32 @@ teacherQuestion("John");
 designerQuestion("John");
 
 interviewQuestion("teacher")("Mark");
+*/
+
+
+/******************************************************************
+ * Immediately Invoked Function Expressions (IIFE)
+ * can only be called once
+ * create a new scope that is hidden from the outside scope
+ * just for data privacy, not creating reusable code
+ */
+
+/*
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+*/
+
+(function() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+//score variable cannot be accessed from outside -- data privacy
+
+//Use parameter with IIFEs
+(function(goodluck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodluck);
+})(5);
