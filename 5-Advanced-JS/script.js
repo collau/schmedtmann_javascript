@@ -219,6 +219,7 @@ function game() {
 game();
 */
 
+/*
 (function() {
     var score = Math.random() * 10;
     console.log(score >= 5);
@@ -230,3 +231,54 @@ game();
     var score = Math.random() * 10;
     console.log(score >= 5 - goodluck);
 })(5);
+*/
+
+
+/******************************************************************
+ * Closures
+ * An inner function has always access to the variables and parameters of its outer function, even after the outer function has returned
+ */
+
+// Function to return a function which calculates how many years till retirement
+// More generic function to create more specific functions (i.e. interface)
+function retirement(retirementAge) {
+    var a = " years let until retirement.";
+    return function(yearOfBirth) {
+        var age = 2020 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+retirementUS(1990);
+retirement(66)(1990);
+
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+retirementGermany(1990);
+retirementIceland(1990);
+
+function interviewQuestion(job) {
+    return function(name) {
+        if (job == "designer") {
+            console.log(name + ", can you please explain what UX design is?");
+        } 
+        else if (job == "teacher") {
+            console.log("What subject do you teach, " + name + "?");
+        }
+        else {
+            console.log("Hello " + name + ", what do you do?");
+        }
+    }
+}
+var teacherQuestion = interviewQuestion("teacher");
+var designerQuestion = interviewQuestion("designer");
+var bakerQuestion = interviewQuestion("baker");
+
+teacherQuestion("Mark");
+designerQuestion("Mark");
+bakerQuestion("Mark");
+
+// We can use the job variable even after interviewQuestion() has already returned
+// Compare to Functions returning functions -- cleaner code
